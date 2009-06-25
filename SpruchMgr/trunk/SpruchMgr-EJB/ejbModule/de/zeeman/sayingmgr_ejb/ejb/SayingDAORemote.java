@@ -9,4 +9,5 @@ import de.zeeman.sayingmgr_ejb.entity.Saying;
 @Remote
 public interface SayingDAORemote {
 	public List<Saying> getAllSayings();
+	public List<Saying> getSayingsSubset(int scrollerPage, int rows);
 }

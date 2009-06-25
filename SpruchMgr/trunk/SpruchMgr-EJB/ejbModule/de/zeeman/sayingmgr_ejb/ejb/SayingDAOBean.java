@@ -29,4 +29,11 @@ public class SayingDAOBean implements SayingDAOLocal, SayingDAORemote {
 		List<Saying> users = q.getResultList();
 		return users;
 	}
+
+	public List<Saying> getSayingsSubset(int scrollerPage, int rows) {
+		Query q = em.createQuery("SELECT s FROM Saying s");
+		//q.setMaxResults(rows);
+		List<Saying> users = q.getResultList();
+		return users;
+	}
 }
