@@ -9,6 +9,21 @@
 		<managed-bean-name>sayingsController</managed-bean-name>
 		<managed-bean-class>de.zeeman.spruchmgr_jsf.controller.SayingsController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>rows</property-name>
+			<property-class>int</property-class>
+			<value>20</value>
+		</managed-property>
+		<managed-property>
+			<property-name>scrollerPage</property-name>
+			<property-class>int</property-class>
+			<value>1</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>sayingFilteringBean</managed-bean-name>
+		<managed-bean-class>de.zeeman.spruchmgr_jsf.filter.SayingFilteringBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 
 </faces-config>
