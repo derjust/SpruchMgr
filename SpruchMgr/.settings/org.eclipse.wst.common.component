@@ -6,7 +6,7 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module deploy-path="/" handle="module:/resource/SpruchMgr-JSF/SpruchMgr-JSF">
+        <dependent-module deploy-path="/" handle="module:/resource/SpruchMgr-Servlet/SpruchMgr-Servlet">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>

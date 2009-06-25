@@ -7,8 +7,8 @@ SpruchMgr</display-name>
   </module>
   <module>
     <web>
-      <web-uri>SpruchMgr-JSF.war</web-uri>
-      <context-root>SpruchMgr-JSF</context-root>
+      <web-uri>SpruchMgr-Servlet.war</web-uri>
+      <context-root>SpruchMgr-Servlet</context-root>
     </web>
   </module>
 </application>
