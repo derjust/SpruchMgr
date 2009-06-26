@@ -10,5 +10,5 @@ import de.zeeman.sayingmgr_ejb.entity.Saying;
 public interface SayingDAOLocal {
 	public List<Saying> getAllSayings();
 
-	public List<Saying> getSayingsSubset(int scrollerPage, int rows);
+	public Saying getRandomSaying();
 }

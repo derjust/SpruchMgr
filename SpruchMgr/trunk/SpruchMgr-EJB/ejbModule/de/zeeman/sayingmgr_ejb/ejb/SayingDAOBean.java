@@ -1,6 +1,7 @@
 package de.zeeman.sayingmgr_ejb.ejb;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,8 +17,9 @@ import de.zeeman.sayingmgr_ejb.entity.Saying;
 public class SayingDAOBean implements SayingDAOLocal, SayingDAORemote {
 	@PersistenceContext
 	private EntityManager em;
-	public static final String RemoteJNDIName =  SayingDAOBean.class.getSimpleName() + "/remote";
-	public static final String LocalJNDIName =  SayingDAOBean.class.getSimpleName() + "/local";
+	private Random random = new Random(System.currentTimeMillis());
+	
+	
 	/**
 	 * Default constructor.
 	 */
@@ -26,14 +28,14 @@ public class SayingDAOBean implements SayingDAOLocal, SayingDAORemote {
 
 	public List<Saying> getAllSayings() {
 		Query q = em.createQuery("SELECT s FROM Saying s");
-		List<Saying> users = q.getResultList();
-		return users;
+		List<Saying> sayings = q.getResultList();
+		return sayings;
 	}
 
-	public List<Saying> getSayingsSubset(int scrollerPage, int rows) {
+	public Saying getRandomSaying() {
 		Query q = em.createQuery("SELECT s FROM Saying s");
-		//q.setMaxResults(rows);
-		List<Saying> users = q.getResultList();
-		return users;
+		List<Saying> sayings = q.getResultList();
+		int id = random.nextInt(sayings.size());
+		return sayings.get(id);
 	}
 }
