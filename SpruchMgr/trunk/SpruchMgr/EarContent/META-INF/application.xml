@@ -11,4 +11,10 @@ SpruchMgr</display-name>
       <context-root>SpruchMgr</context-root>
     </web>
   </module>
+  <module>
+    <web>
+      <web-uri>SpruchMgr-WS.war</web-uri>
+      <context-root>SpruchMgr-WS</context-root>
+    </web>
+  </module>
 </application>

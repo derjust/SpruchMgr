@@ -5,6 +5,7 @@
 	<projects>
 		<project>SpruchMgr-EJB</project>
 		<project>SpruchMgr-JSF</project>
+		<project>SpruchMgr-WS</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
