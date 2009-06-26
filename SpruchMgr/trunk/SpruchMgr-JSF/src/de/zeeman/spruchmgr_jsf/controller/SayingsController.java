@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2007-2009 RÖPERWEISE Systems GmbH, Gehrden - GERMANY. All rights reserved.
+ * Copyright (c) 2007-2009 Rï¿½PERWEISE Systems GmbH, Gehrden - GERMANY. All rights reserved.
  */
 package de.zeeman.spruchmgr_jsf.controller;
 
@@ -38,7 +38,7 @@ public class SayingsController {
 	
 	public DataModel getSayings() {
 		if (model==null) {
-			model = new ListDataModel(sayingDAO.getSayingsSubset(getScrollerPage(), getRows()));
+			model = new ListDataModel(sayingDAO.getAllSayings());
 		}
 		return model;
 	}
