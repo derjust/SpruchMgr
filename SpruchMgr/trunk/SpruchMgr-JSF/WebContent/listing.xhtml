@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/WEB-INF/layout/layout.xhtml">
+	<ui:define name="title">Sayings - Listing</ui:define>
+	<ui:define name="content">
+
+		<!-- use the form tag to set up this form -->
+
+		<a4j:form>
+
+			<script type="text/javascript">
+	function setCaretToEnd(e) {
+		var control = $((e.target ? e.target : e.srcElement).id);
+		if (control.createTextRange) {
+			var range = control.createTextRange();
+			range.collapse(false);
+			range.select();
+		} else if (control.setSelectionRange) {
+			control.focus();
+			var length = control.value.length;
+			control.setSelectionRange(length, length);
+		}
+		control.selectionStart = control.selectionEnd = control.value.length;
+	}
+</script>
+			<style>
+.scrollerCell {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+</style>
+
+			<rich:dataTable id="table" rows="#{sayingsController.rows}"
+				width="100%" columnClasses="col"
+				value="#{sayingsController.sayings}" var="s">
+				<f:facet name="footer">
+					<rich:datascroller maxPages="20" fastControls="hide" id="ds2"
+						renderIfSinglePage="false"
+						page="#{sayingsController.scrollerPage}" pagesVar="pages">
+						<f:facet name="first">
+							<h:outputText value="First" styleClass="scrollerCell" />
+						</f:facet>
+						<f:facet name="first_disabled">
+							<h:outputText value="First" styleClass="scrollerCell" />
+						</f:facet>
+						<f:facet name="last">
+							<h:outputText value="Last" styleClass="scrollerCell" />
+						</f:facet>
+						<f:facet name="last_disabled">
+							<h:outputText value="Last" styleClass="scrollerCell" />
+						</f:facet>
+						<f:facet name="previous">
+							<h:outputText value="Previous" styleClass="scrollerCell" />
+						</f:facet>
+						<f:facet name="previous_disabled">
+							<h:outputText value="Previous" styleClass="scrollerCell" />
+						</f:facet>
+						<f:facet name="next">
+							<h:outputText value="Next" styleClass="scrollerCell" />
+						</f:facet>
+						<f:facet name="next_disabled">
+							<h:outputText value="Next" styleClass="scrollerCell" />
+						</f:facet>
+					</rich:datascroller>
+				</f:facet>
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column>
+							<h:outputText value="Nr" />
+						</rich:column>
+						<rich:column>
+							<h:outputText value="Spruch" />
+						</rich:column>
+						<rich:column>
+							<h:outputText value="Autor" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+				<rich:column>
+					<h:outputText value="#{s.id}" />
+				</rich:column>
+				<rich:column filterMethod="#{sayingFilteringBean.filterSaying}">
+					<f:facet name="header">
+                	Spruch
+                    <h:inputText
+							value="#{sayingFilteringBean.filterSayingValue}" id="input">
+							<a4j:support event="onkeyup" reRender="table , ds2"
+								ignoreDupResponses="true" requestDelay="700" />
+						</h:inputText>
+					</f:facet>
+					<h:outputText value="#{s.saying}" />
+				</rich:column>
+				<rich:column filterBy="#{s.author}" filterEvent="onkeyup">
+					<h:outputText value="#{s.author}" />
+					<rich:toolTip>
+						<h:panelGrid columns="2">
+							<h:graphicImage value="/AuthorImageStream?authorid=#{s.author.id}" width="100" /> 
+							<h:panelGrid columns="1">
+								<f:facet name="header">
+									<h:outputText value="#{s.author}" style="font-weight:bold;" />
+								</f:facet>
+								<h:panelGrid columns="2">
+									<h:outputText value="* "
+										rendered="#{s.author.birthday != null}" />
+									<h:outputText value="#{s.author.birthday}">
+										<f:convertDateTime type="date" dateStyle="medium" />
+									</h:outputText>
+								</h:panelGrid>
+								<h:panelGrid columns="2">
+									<h:outputText value="&#x2020; "
+										rendered="#{s.author.obit != null}" escape="false" />
+									<h:outputText value="#{s.author.obit}">
+										<f:convertDateTime type="date" dateStyle="medium" />
+									</h:outputText>
+								</h:panelGrid>
+								<h:panelGrid columns="2">
+									<h:outputText value="Beruf" rendered="{s.author.work != null}" />
+									<h:outputText value="#{s.author.work}" />
+								</h:panelGrid>
+							</h:panelGrid>
+						</h:panelGrid>
+					</rich:toolTip>
+				</rich:column>
+			</rich:dataTable>
+
+		</a4j:form>
+	</ui:define>
+</ui:composition>
+</html>

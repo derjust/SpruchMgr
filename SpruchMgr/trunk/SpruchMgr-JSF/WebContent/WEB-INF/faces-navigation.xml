@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+      http://java.sun.com/xml/ns/j2ee/web-facesconfig_1_2.xsd"
+	version="1.2">
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>addSaying</from-outcome>
+			<to-view-id>/addSaying.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addAuthor</from-outcome>
+			<to-view-id>/addAuthor.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>searchSaying</from-outcome>
+			<to-view-id>/searchSaying.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>main</from-outcome>
+			<to-view-id>/main.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/main.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>listing</from-outcome>
+			<to-view-id>/listing.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>

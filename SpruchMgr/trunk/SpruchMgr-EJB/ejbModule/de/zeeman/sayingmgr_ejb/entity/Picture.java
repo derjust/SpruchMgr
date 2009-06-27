@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2007-2009 RÖPERWEISE Systems GmbH, Gehrden - GERMANY. All rights reserved.
+ * Copyright (c) 2007-2009 Rï¿½PERWEISE Systems GmbH, Gehrden - GERMANY. All rights reserved.
  */
 package de.zeeman.sayingmgr_ejb.entity;
 
@@ -33,8 +33,7 @@ public class Picture implements Serializable {
 	}
 
 	@SuppressWarnings("unused")
-	@Transient
-	private Blob getBlob() {
+	private Blob getData() {
 		return Hibernate.createBlob(this.image);
 	}
 
@@ -67,7 +66,7 @@ public class Picture implements Serializable {
 	}
 
 	@SuppressWarnings("unused")
-	private void setBlob(Blob imageBlob) {
+	private void setData(Blob imageBlob) {
 		this.image = toByteArray(imageBlob);
 	}
 

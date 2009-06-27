@@ -25,5 +25,27 @@
 		<managed-bean-class>de.zeeman.spruchmgr_jsf.filter.SayingFilteringBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>paintAuthorPictureBean</managed-bean-name>
+		<managed-bean-class>de.zeeman.spruchmgr_jsf.PaintAuthorPictureBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>addAuthorController</managed-bean-name>
+		<managed-bean-class>de.zeeman.spruchmgr_jsf.controller.AddAuthorController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>addSayingController</managed-bean-name>
+		<managed-bean-class>de.zeeman.spruchmgr_jsf.controller.AddSayingController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+  <application>
+    <locale-config>
+    	<default-locale>de</default-locale>
+      <supported-locale>en</supported-locale>
+    </locale-config>
+	<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+  </application>
 
 </faces-config>
