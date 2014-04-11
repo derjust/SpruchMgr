@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<style>
+.pic {
+	margin-bottom: -4px;
+	margin-right: 2px;
+}
+</style>
+	<h:form>
+
+		<rich:modalPanel id="panel" width="350" height="100">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText value="Über"></h:outputText>
+				</h:panelGroup>
+			</f:facet>
+			<f:facet name="controls">
+				<h:panelGroup>
+					<h:graphicImage value="/img/close.png" styleClass="hidelink"
+						id="hidelink" />
+					<rich:componentControl for="panel" attachTo="hidelink"
+						operation="hide" event="onclick" />
+				</h:panelGroup>
+			</f:facet>
+			<p><h:outputText value="SpruchManager" /></p>
+			<p><h:outputText value="Version: 1.0.0" /><br />
+			<h:outputText value="Autor: Sebastian Just" /></p>
+		</rich:modalPanel>
+
+		<rich:toolBar>
+
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Suchen" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem value="Suchassistent" action="searchSaying" />
+				<rich:menuSeparator id="menuSeparator11" />
+				<rich:menuItem value="Tagesspruch" action="main" />
+			</rich:dropDownMenu>
+
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Verwalten" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem value="Sprüche" action="addSaying" />
+				<rich:menuSeparator id="menuSeparator12" />
+				<rich:menuItem value="Autoren" action="addAuthor" />
+			</rich:dropDownMenu>
+
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Über" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem value="Über" submitMode="none" id="aboutLink">
+					<rich:componentControl for="panel" attachTo="aboutLink"
+						operation="show" event="onclick" />
+				</rich:menuItem>
+			</rich:dropDownMenu>
+
+		</rich:toolBar>
+
+	</h:form>
+</ui:composition>

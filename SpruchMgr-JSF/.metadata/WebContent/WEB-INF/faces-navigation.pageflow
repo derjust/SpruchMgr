@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12460618650460" configfile="/SpruchMgr-JSF/WebContent/WEB-INF/faces-navigation.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf12460619247501" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf12460619247502 pf12460619247503 pf12460619417036 pf12460620296408" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="addSaying" id="pf12460619247504" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf12460619247502" path="/addSaying.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="addAuthor" id="pf12460619247505" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf12460619247503" path="/addAuthor.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="searchSaying" id="pf12460619417037" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf12460619417036" path="/searchSaying.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="main" id="pf12460620296409" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf124606206950010" inlinks="pf12460620296408" path="/main.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="listing" id="pf124606206950011" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf124606206950010" path="/listing.jsp"/>
+  <links id="pf12460619247502" target="pf12460619247504" source="pf12460619247501" outcome="addSaying"/>
+  <links id="pf12460619247503" target="pf12460619247505" source="pf12460619247501" outcome="addAuthor"/>
+  <links id="pf12460619417036" target="pf12460619417037" source="pf12460619247501" outcome="searchSaying"/>
+  <links id="pf12460620296408" target="pf12460620296409" source="pf12460619247501" outcome="main"/>
+  <links id="pf124606206950010" target="pf124606206950011" source="pf12460620296409" outcome="listing"/>
+</pageflow:Pageflow>

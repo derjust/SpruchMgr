@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+	<managed-bean>
+		<managed-bean-name>sayingsController</managed-bean-name>
+		<managed-bean-class>de.zeeman.spruchmgr_jsf.controller.SayingsController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>rows</property-name>
+			<property-class>int</property-class>
+			<value>20</value>
+		</managed-property>
+		<managed-property>
+			<property-name>scrollerPage</property-name>
+			<property-class>int</property-class>
+			<value>1</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>sayingFilteringBean</managed-bean-name>
+		<managed-bean-class>de.zeeman.spruchmgr_jsf.filter.SayingFilteringBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>paintAuthorPictureBean</managed-bean-name>
+		<managed-bean-class>de.zeeman.spruchmgr_jsf.PaintAuthorPictureBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>addAuthorController</managed-bean-name>
+		<managed-bean-class>de.zeeman.spruchmgr_jsf.controller.AddAuthorController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>addSayingController</managed-bean-name>
+		<managed-bean-class>de.zeeman.spruchmgr_jsf.controller.AddSayingController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+  <application>
+    <locale-config>
+    	<default-locale>de</default-locale>
+      <supported-locale>en</supported-locale>
+    </locale-config>
+	<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+  </application>
+
+</faces-config>

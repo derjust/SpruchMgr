@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/WEB-INF/layout/layout.xhtml">
+	<ui:define name="title">Sayings - Add Author</ui:define>
+	<ui:define name="content">
+
+		<!-- use the form tag to set up this form -->
+		<h:form id="cdForm">
+
+			<rich:panel header="Autor hinzufügen">
+				<h:gridPanel columns="2">
+					<h:outputText value="Nr" />
+					<h:inputText read-only="true" />
+
+					<h:outputText value="Spruch" />
+
+					<rich:orderingList value="#{library.songsList}" var="a"
+						listHeight="300" listWidth="350" converter="orderingListConverter"
+						selection="#{library.selectedSongsSet}">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Autor" />
+							</f:facet>
+							<h:outputText value="#{a}"></h:outputText>
+						</rich:column>
+						<a4j:support event="onclick" ignoreDupResponses="true"
+							requestDelay="500" action="#{library.takeSelection}"
+							reRender="output" />
+						<a4j:support event="onkeyup" ignoreDupResponses="true"
+							requestDelay="500" action="#{library.takeSelection}"
+							reRender="output" />
+					</rich:orderingList>
+
+				</h:gridPanel>
+			</rich:panel>
+			<rich:panel id="output" header="Autorvorschau">
+				<rich:dataList value="#{library.selectedSongsList}" var="song"
+					rendered="#{not empty library.selectedSongsList}">
+					<h:outputText value="#{song.title}"></h:outputText>
+				</rich:dataList>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
