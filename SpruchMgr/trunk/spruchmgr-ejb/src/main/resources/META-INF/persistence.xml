@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	version="1.0">
+	<persistence-unit name="Saying_pu">
+		<description>example of enabling the second level cache.</description>
+		<jta-data-source>java:/jdbc/spruchdb</jta-data-source>
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+
+		<class>de.zeeman.spruchmgr.Saying</class>
+		<class>de.zeeman.spruchmgr.Author</class>
+
+
+		<properties>
+			<property name="hibernate.cache.use_second_level_cache"
+				value="false" />
+			<property name="hibernate.show_sql" value="true" />
+			<!--
+validate: validate the schema, makes no changes to the database.
+update: update the schema.
+create: creates the schema, destroying previous data.
+create-drop: drop the schema at the end of the session.
+			-->
+			<property name="hibernate.hbm2ddl.auto" value="validate" />
+			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect" /> -->
+			<property name="jpa.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			
+		</properties>
+	</persistence-unit>
+</persistence>
