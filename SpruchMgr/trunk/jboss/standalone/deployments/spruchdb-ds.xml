@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+
+                <datasource jndi-name="java:/jdbc/spruchdb" pool-name="spruchdb" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:mysql://localhost:3307/xxxxxxxxxx</connection-url>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>xxxxxxxxxx</user-name>
+                        <password>xxxxxxxxxxxxxxxx</password>
+                    </security>
+                    <timeout>
+                        <idle-timeout-minutes>0</idle-timeout-minutes>
+                        <query-timeout>600</query-timeout>
+                    </timeout>
+                    <statement>
+                        <prepared-statement-cache-size>100</prepared-statement-cache-size>
+                        <share-prepared-statements>true</share-prepared-statements>
+                    </statement>
+                </datasource>
+	                
+</datasources>
