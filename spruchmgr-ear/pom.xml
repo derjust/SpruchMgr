@@ -45,6 +45,8 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	
 
 	<dependencies>
 		<dependency>
@@ -59,6 +61,7 @@
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
+		
 	</dependencies>
 
 </project>

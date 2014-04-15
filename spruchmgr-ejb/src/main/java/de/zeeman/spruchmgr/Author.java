@@ -2,16 +2,13 @@ package de.zeeman.spruchmgr;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,7 +17,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name = "author")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -28,6 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Authors")
 public class Author implements Serializable {
 
+	private static final long serialVersionUID = 1327151541745321495L;
 	@XmlElement(required = true)
 	@Id @Column(name="Id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

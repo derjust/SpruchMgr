@@ -22,6 +22,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Sayings")
 public class Saying implements Serializable {
 
+	private static final long serialVersionUID = 4781908991470834341L;
+
 	@XmlElement(required = true)
 	@Id
 	@Column(name = "Id")
