@@ -3,20 +3,18 @@ package de.zeeman.spruchmgr_ejb;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Init;
-import javax.ejb.LocalBean;
 import javax.ejb.Schedule;
-import javax.ejb.Singleton;
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.resource.ResourceException;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.XmlConfigBuilder;
-import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.ISet;
-import com.hazelcast.instance.HazelcastInstanceFactory;
+import com.hazelcast.core.TransactionalSet;
+import com.hazelcast.jca.HazelcastConnection;
+import com.hazelcast.jca.HazelcastConnectionFactory;
 
 import de.zeeman.spruchmgr.Saying;
 
@@ -31,7 +29,8 @@ public class CacheRefresher {
 	@EJB
 	protected SayingService sayingService;
 	
-	private static final HazelcastInstance hazelcast = HazelcastInstanceFactory.newHazelcastInstance(null);
+	@Resource(mappedName="java:/HazelcastCF") 
+	protected com.hazelcast.jca.HazelcastConnectionFactory hzFactory;
 	
     /**
      * Default constructor. 
@@ -51,18 +50,26 @@ public class CacheRefresher {
     }
     
     private void updateCache() {
-    	ISet<Saying> rs = hazelcast.getSet("randomsaying");
-    	Saying s = sayingService.getRandomSaying();
-    	logger.log(Level.INFO, "Updated Cache with {0}", s);
-    	rs.clear();
-    	rs.add(s);
+    	try (HazelcastConnection hazelcast = hzFactory.getConnection()) {
+    		TransactionalSet<Saying> rs = hazelcast.getTransactionalSet("randomsaying");
+        	Saying s = sayingService.getRandomSaying();
+        	logger.log(Level.INFO, "Updated Cache with {0}", s);
+        	rs.destroy();
+        	rs.add(s);	
+    	} catch (ResourceException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
     }
     
     public Saying getRandomSaying() {
-    	ISet<Saying> rs = hazelcast.getSet("randomsaying");
-    	Saying s = rs.iterator().next();
-    	logger.log(Level.FINE, "Retrieve random saying {0}", s);
-    	return s;
+    	try (HazelcastConnection hazelcast = hzFactory.getConnection()) {
+	    	ISet<Saying> rs = hazelcast.getSet("randomsaying");
+	    	Saying s = rs.iterator().next();
+	    	logger.log(Level.FINE, "Retrieve random saying {0}", s);
+	    	return s;
+    	} catch (ResourceException e) {
+    		throw new RuntimeException(e.getMessage(), e);
+		}
     }
 
 }

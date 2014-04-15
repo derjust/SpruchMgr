@@ -1,8 +1,6 @@
 package de.zeeman.spruchmgr_war;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,14 +28,24 @@ public class SpruchEndpoint {
 	SayingService sayingService;
 
 	@GET
+	@Path("/count")
+	public long getCount() {
+
+		return sayingService.getSpruecheCount();
+	}
+	
+	@GET
 	@Path("/")
 	public Collection<Saying> getSprueche(@QueryParam("start") int start,
 			@QueryParam("length") int length) {
 
+		if (length==0){
+			length=15;
+		}
 		System.out.println(start);
 		System.out.println(length);
 
-		Collection<Saying> retValue = sayingService.getAllSprueche();
+		Collection<Saying> retValue = sayingService.getAllSprueche(start, length);
 
 		return retValue;
 	}

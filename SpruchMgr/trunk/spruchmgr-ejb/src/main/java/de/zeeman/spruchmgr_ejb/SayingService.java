@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -12,8 +11,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Order;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -33,12 +30,14 @@ public class SayingService {
 	public SayingService() {
 	}
 
-	public Collection<Saying> getAllSprueche() {
+	public Collection<Saying> getAllSprueche(int start, int length) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Saying> cq = cb.createQuery(Saying.class);
 		Root<Saying> saying = cq.from(Saying.class);
 		cq.select(saying);
 		TypedQuery<Saying> q = em.createQuery(cq);
+		q.setFirstResult(start);
+		q.setMaxResults(length);
 		List<Saying> allSayings = q.getResultList();
 
 		return allSayings;
@@ -112,6 +111,19 @@ public class SayingService {
 		Saying s = em.find(Saying.class, id);
 
 		return s;
+	}
+
+	public long getSpruecheCount() {
+       CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> query = cb.createQuery(Long.class);
+
+        Root<Saying> music = query.from(Saying.class);
+        query.select(cb.count(music));
+
+        TypedQuery<Long> tq = em.createQuery(query);
+
+        Long count = tq.getSingleResult();
+        return count;
 	}
 
 
